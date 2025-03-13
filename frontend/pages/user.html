@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Usuários</title>
+    <link rel="stylesheet" href="/frontend/pages/styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Minha Logo</div>
+      <nav>
+        <ul>
+          <li><a href="/frontend/index.html">Início</a></li>
+          <li><a href="/frontend/pages/user.html">Usuários</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="users">
+        <h2>Usuários</h2>
+        <div id="loading">Carregando usuários...</div>
+        <div id="user-list"></div>
+        <div id="pagination"></div>
+      </section>
+    </main>
+
+    <footer>
+      <p>Siga-nos nas redes sociais:</p>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+
+    <script>
+      let currentPage = 1;
+
+      document.addEventListener("DOMContentLoaded", function () {
+        fetchUsers(currentPage);
+      });
+
+      function fetchUsers(page) {
+        document.getElementById("loading").style.display = "block";
+        fetch(`http://127.0.0.1:5000/users?page=${page}`)
+          .then((response) => response.json())
+          .then((data) => {
+            document.getElementById("loading").style.display = "none";
+            let userList = document.getElementById("user-list");
+            userList.innerHTML = "";
+            data.users.forEach((user) => {
+              let userItem = document.createElement("div");
+              userItem.classList.add("user-item");
+              userItem.innerHTML = `
+                            <img src="${user.picture}" alt="Foto de ${user.name}">
+                            <p><strong>Nome:</strong> ${user.name}</p>
+                            <p><strong>Email:</strong> ${user.email}</p>
+                        `;
+              userList.appendChild(userItem);
+            });
+
+            let pagination = document.getElementById("pagination");
+            pagination.innerHTML = `
+                        <button onclick="changePage(-1)" ${
+                          page === 1 ? "disabled" : ""
+                        }>Anterior</button>
+                        <span>Página ${page}</span>
+                        <button onclick="changePage(1)">Próxima</button>
+                    `;
+          })
+          .catch((error) => {
+            document.getElementById("loading").style.display = "none";
+            console.error("Erro ao buscar usuários:", error);
+          });
+      }
+
+      function changePage(step) {
+        currentPage += step;
+        fetchUsers(currentPage);
+      }
+    </script>
+  </body>
+</html>

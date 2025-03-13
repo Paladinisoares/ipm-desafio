@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Página Web Responsiva</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <header>
+      <div class="logo">Minha Logo</div>
+      <nav>
+        <ul>
+          <li><a href="index.html">Início</a></li>
+          <li><a href="/frontend/pages/user.html">Usuários</a></li>
+        </ul>
+      </nav>
+    </header>
+
+    <main>
+      <section id="home">
+        <h1>Bem-vindo à Nossa Página</h1>
+        <p>Esta é uma página exemplo construída com HTML, CSS e JavaScript.</p>
+        <img src="/frontend/assets/ipm.jpeg" alt="Imagem ilustrativa" />
+      </section>
+
+      <section id="contato">
+        <h2>Entre em Contato</h2>
+        <form id="contact-form">
+          <label for="name">Nome:</label>
+          <input type="text" id="name" name="name" required />
+
+          <label for="email">E-mail:</label>
+          <input type="email" id="email" name="email" required />
+
+          <label for="message">Mensagem:</label>
+          <textarea id="message" name="message" required></textarea>
+
+          <button type="submit">Enviar</button>
+          <p id="form-message"></p>
+        </form>
+      </section>
+    </main>
+
+    <footer>
+      <p>Siga-nos nas redes sociais:</p>
+      <div class="social-links">
+        <a href="#">Facebook</a>
+        <a href="#">Twitter</a>
+        <a href="#">Instagram</a>
+      </div>
+    </footer>
+
+    <script src="script.js"></script>
+  </body>
+</html>
