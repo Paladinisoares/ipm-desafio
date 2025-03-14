@@ -31,7 +31,7 @@ document
   });
 
 function fetchUsers(page) {
-  fetch(`http://127.0.0.1:5000/users?page=${page}`)
+  fetch(`https://ipm-desafio.onrender.com/users?page=${page}`)
     .then((response) => response.json())
     .then((data) => {
       let userList = document.getElementById("user-list");

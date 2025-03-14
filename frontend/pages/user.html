@@ -44,7 +44,7 @@
 
       function fetchUsers(page) {
         document.getElementById("loading").style.display = "block";
-        fetch(`http://127.0.0.1:5000/users?page=${page}`)
+        fetch(`https://ipm-desafio.onrender.com/users?page=${page}`)
           .then((response) => response.json())
           .then((data) => {
             document.getElementById("loading").style.display = "none";
